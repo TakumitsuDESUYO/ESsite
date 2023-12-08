@@ -6,6 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login Form</title>
         <style>
+            container{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
             body {
                 font-family: Arial, sans-serif;
                 
@@ -14,7 +20,8 @@
                 width: 400px;
                 height: 420px;
                 margin: 50px auto;
-                border: solid 2px black;
+                border: solid 1px black;
+                border-radius: 10px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -40,13 +47,17 @@
         </style>
     </head>
     <body>
+        <container>
         <form action="/src/components/loginForm.php" method="post">
-            <p style="text-align: center; font-size: 30px;">ログイン</p>
-            <label for="user_ID">Username:</label>
-            <input type="text" id="user_ID" name="user_ID" required>
-            <label for="user_password">Password:</label>
-            <input type="password" id="user_password" name="user_password" required><br>
-            <button type="submit" style="width: 100px;">Login</button>
+            <p style="font-size: 30px;">ログイン</p>
+            <div style="width: 350px;height: 200px;margin-top:20px;">
+                <label for="user_ID">Username:</label>
+                <input type="text" id="user_ID" name="user_ID" required>
+                <label for="user_password">Password:</label>
+                <input type="password" id="user_password" name="user_password" required><br>
+            </div>
+            <button type="submit" style="width: 300px;border-radius: 15px;">Login</button>
+           
             <?php
                 session_start();
                 $error_text = isset($_SESSION['error']) ? $_SESSION['error'] : '';
@@ -54,5 +65,7 @@
                 unset($_SESSION['error']);
             ?>  
         </form>
+        <a href="/src/pages/createAccountView.php">アカウント作成はこちらから</a>
+        </container>
     </body>
 </html>
