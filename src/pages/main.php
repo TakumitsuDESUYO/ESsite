@@ -8,8 +8,10 @@ $title = "My PHP Page";
 
 // HTMLコードを出力
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,60 +26,81 @@ $title = "My PHP Page";
         header {
             background-color: #333;
             color: #fff;
-            display: flex; /* 要素を横並びにする */
-            align-items: center; /* 要素を縦方向に中央揃え */
+            display: flex;
+            align-items: center;
             padding: 10px;
             position: fixed;
             width: 100%;
+            height: 50px;
+            min-width: 1000px;
             z-index: 1000;
-        }
-
-        input {
-            width: 300px; /* 適切な幅に調整 */
-            box-sizing: border-box; /* borderやpaddingも含めたサイズ計算 */
+            border: solid red;
         }
 
         header h1 {
-            margin: 0; /* タイトルの余白をリセット */
+            margin: 0;
+            border: solid red;
         }
 
         header div {
-            margin-left: auto; /* 右側に余白をもたせて右寄せにする */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: solid red;
         }
 
-        header nav a {
+        header a {
             color: #fff;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 5px;
+            border: solid red;
         }
 
-        header input {
-            width: 1000px;
-            height: 40px;
-            /* width: 60%; */
+        input {
+            width: 65%;
+            box-sizing: border-box;
+        }
 
+        /* カート表示用のスタイル */
+        #cart-container {
+            position: fixed;
+            top: 100px; /* headerの下に配置 */
+            right: -300px; /* 初期位置は画面外 */
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: right 0.3s ease; /* アニメーション設定 */
+        }
+
+        #cart-content {
+            padding: 20px;
         }
     </style>
 </head>
+
 <body>
 
     <header>
         <h1>Takuzon.co.jp</h1>
         <div>
-            <nav>
-                <a href="#">場所を変更する</a>
-                <a href="#">インプット</a>
-                <input type="text" placeholder="検索 Takuzon.co.jp">
-                <a href="#">こんにちは、ログイン</a>
-                <a href="#">注文履歴</a>
-                <a href="#">カート</a>
-
-
-
-            </nav>
+            <a href="#">場所を変更する</a>
+            <input type="text" placeholder="検索 Takuzon.co.jp">
+            <a href="#">こんにちは、ログイン</a>
+            <a href="#">注文履歴</a>
+            <a href="#" onclick="toggleCart()">カート</a>
         </div>
     </header>
 
+    <!-- カート表示用のコンテナ -->
+    <div id="cart-container">
+        <div id="cart-content">
+            <!-- カートの中身が表示される部分 -->
+            <!-- ここにカート内の商品などを表示するコードを追加 -->
+            カートの中身がここに表示されます。
+        </div>
+    </div>
+
     <br>
     <br>
     <br>
@@ -86,17 +109,33 @@ $title = "My PHP Page";
     <br>
     <br>
     <br>
+    <div style="width: 90%; border: solid; margin: auto;">
+        <!-- 商品表示機能 -->
+        <?php
+        include('../components/SpecimenDisplay.php');
+        echo "<button>aa</button>";
+        ?>
+    </div>
 
     <h1>Hello, World!</h1>
-    <!-- index.php -->
-<?php
-echo "This is the content from index.php";
 
-// external.phpをinclude
-include('../components/external.php');
-?>
+    <!-- 問い合わせ機能 -->
+    <?php
+    echo "This is the content from index.php";
+    include('../components/external.php');
+    ?>
 
-    <!-- 他のページのコンテンツを追加 -->
-
+    <script>
+        function toggleCart() {
+            var cartContainer = document.getElementById('cart-container');
+            // カートの表示状態を切り替える
+            if (cartContainer.style.right === '0px') {
+                cartContainer.style.right = '-300px';
+            } else {
+                cartContainer.style.right = '0px';
+            }
+        }
+    </script>
 </body>
+
 </html>
