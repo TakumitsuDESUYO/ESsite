@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->num_rows > 0) {
         // データが一致する場合
         echo "ログイン成功";
+        $_SESSION['user_id'] = $user_ID_input;
         header("Location: /src/pages/main.php");
     } else {
         // データが一致しない場合
