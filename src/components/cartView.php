@@ -49,10 +49,8 @@ if ($conn->connect_error) {
                                     </div>
                                 </div>
                             </div>";
-                    }
-                    
-                    
-                    
+                    } 
+                    echo "<button onclick='redirectToCheckout()'>カートの中身を購入する</button>";
                 }
             }
             echo '</div>';
@@ -85,6 +83,12 @@ if ($conn->connect_error) {
 
         xhr.send(params);
         }
+        
+        function redirectToCheckout() {
+        var checkoutUrl = 'purchasePage.php';
+        window.location.href = checkoutUrl;
+    }
+
     </script>
 </body>
 

@@ -1,10 +1,7 @@
 <?php
 // session_start();
 
-// MySQLに接続
 $conn = new mysqli("localhost", "root", "", "sample_data");
-
-// 接続エラーの確認
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -14,13 +11,11 @@ if (isset($_SESSION['user_id'])) {
     // ログインしている場合
     $user_id = $_SESSION['user_id'];
 
-    // データを取得するクエリ
     $sql = "SELECT * FROM merchandise_data";
     $result = $conn->query($sql);
 
-    // クエリの実行と結果の処理
     if ($result->num_rows > 0) {
-        echo '<div style="display: flex; flex-wrap: wrap;">'; // 横に並べるためのスタイル
+        echo '<div style="display: flex; flex-wrap: wrap;">';
 
         while ($row = $result->fetch_assoc()) {
             echo "<div style=\"width: 200px; height: 400px; border: solid 1px black; margin: 10px;\">
@@ -35,7 +30,7 @@ if (isset($_SESSION['user_id'])) {
                   </div>";
         }
 
-        echo '</div>'; // 横に並べるためのスタイルの終了
+        echo '</div>';
     } else {
         // データが存在しない場合
         echo "0 results";
@@ -45,7 +40,6 @@ if (isset($_SESSION['user_id'])) {
     echo "ログインしていません。";
 }
 
-// データベース接続を閉じる
 $conn->close();
 ?>
 
@@ -53,7 +47,7 @@ $conn->close();
     function addToCart(merchandise_id, user_id) {
         // JavaScriptからデータをPHPに送信する
         var xhr = new XMLHttpRequest();
-        var url = '/src/components/addToCart.php'; // あなたのPHPファイルのパスに変更してください
+        var url = '/src/components/addToCart.php';
         var params = 'merchandise_id=' + merchandise_id + '&user_id=' + user_id;
 
         xhr.open('POST', url, true);
