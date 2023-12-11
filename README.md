@@ -29,3 +29,22 @@ ECサイト風ページ作成
     2023/12/07　１日目
     ログイン画面：
     メイン画面：
+
+
+
+    /HTDOCS
+        /images
+            /merchandise_image
+                food1.png
+        /src
+            /components
+                /createAccount.php
+                /external.php
+                /loginForm.php
+                /test用のやつ
+            /pages
+                /createAccountView.php
+                /index.php
+                /main.php
+        README.md
+     
