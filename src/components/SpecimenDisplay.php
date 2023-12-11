@@ -1,7 +1,6 @@
 <?php
-session_start();
-$userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
-echo "ユーザーID: $userId";
+// session_start();
+
 // MySQLに接続
 $conn = new mysqli("localhost", "root", "", "sample_data");
 
@@ -51,8 +50,21 @@ $conn->close();
 ?>
 
 <script>
-    function addToCart(merchandise_id,a) {
-        console.log(merchandise_id)
-        console.log(a)
+    function addToCart(merchandise_id, user_id) {
+        // JavaScriptからデータをPHPに送信する
+        var xhr = new XMLHttpRequest();
+        var url = '/src/components/addToCart.php'; // あなたのPHPファイルのパスに変更してください
+        var params = 'merchandise_id=' + merchandise_id + '&user_id=' + user_id;
+
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+            }
+        }
+
+        xhr.send(params);
     }
 </script>

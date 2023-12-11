@@ -1,12 +1,8 @@
 <!-- index.php -->
 <?php
-// 必要なヘッダーを設定
 header("Content-Type: text/html; charset=UTF-8");
 
-// タイトルを設定
 $title = "My PHP Page";
-
-// HTMLコードを出力
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +43,7 @@ $title = "My PHP Page";
             display: flex;
             align-items: center;
             border: solid red;
+            
         }
 
         header a {
@@ -64,17 +61,18 @@ $title = "My PHP Page";
         /* カート表示用のスタイル */
         #cart-container {
             position: fixed;
-            top: 100px; /* headerの下に配置 */
-            right: -300px; /* 初期位置は画面外 */
+            top: 100px;
+            right: -300px;
             width: 300px;
             height: 100%;
             background-color: #333;
             color: #fff;
-            transition: right 0.3s ease; /* アニメーション設定 */
+            transition: right 0.3s ease;
+            
         }
 
         #cart-content {
-            padding: 20px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -95,9 +93,11 @@ $title = "My PHP Page";
     <!-- カート表示用のコンテナ -->
     <div id="cart-container">
         <div id="cart-content">
-            <!-- カートの中身が表示される部分 -->
-            <!-- ここにカート内の商品などを表示するコードを追加 -->
             カートの中身がここに表示されます。
+            <?php
+            include('../components/cartView.php');
+            ?>
+
         </div>
     </div>
 
@@ -107,10 +107,7 @@ $title = "My PHP Page";
     <br>
     <br>
     <br>
-    <br>
-    <br>
     <div style="width: 90%; border: solid; margin: auto;">
-        <!-- 商品表示機能 -->
         <?php
         include('../components/SpecimenDisplay.php');
         echo "<button>aa</button>";
